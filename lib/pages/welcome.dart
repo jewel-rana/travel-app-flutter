@@ -13,9 +13,9 @@ class Welcome extends StatefulWidget {
 
 class _WelcomeState extends State<Welcome> {
   List images = [
-    "welcome-one.jpg",
-    "welcome-two.jpg",
-    "welcome-three.jpg"
+    "kukri-mukri-01.jpeg",
+    "kukri-mukri-02.jpeg",
+    "kukri-mukri-03.jpeg"
   ];
 
   @override

@@ -40,7 +40,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   margin: const EdgeInsets.only(right: 20),
                   decoration: BoxDecoration(
                       image: const DecorationImage(
-                          image: AssetImage("img/welcome-one.jpg"),
+                          image: AssetImage("img/user.webp"),
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.grey.withOpacity(0.5)),
@@ -91,7 +91,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                           image: const DecorationImage(
-                              image: AssetImage("img/welcome-one.jpg"),
+                              image: AssetImage("img/kukri-mukri-01.jpeg"),
                               fit: BoxFit.cover)),
                     );
                   },
