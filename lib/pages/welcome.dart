@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/cubit/app_cubit.dart';
 import 'package:travel_app/utils/app_colors.dart';
 import 'package:travel_app/widgets/app_large_text.dart';
 import 'package:travel_app/widgets/app_text.dart';
-import 'package:travel_app/widgets/button.dart';
+import 'package:travel_app/widgets/responsive_button.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({Key? key, required String title}) : super(key: key);
@@ -54,7 +56,14 @@ class _WelcomeState extends State<Welcome> {
                             )
                         ),
                         const SizedBox(height: 40,),
-                        Button(width: 120,)
+                        GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<AppCubits>(context).getData();
+                          },
+                          child: Container(
+                            width: 200,
+                              child: Row(children: [ResponsiveButton(text: "Explore", isResponsive: true,)])),
+                        )
                       ],
                     ),
                     Column(

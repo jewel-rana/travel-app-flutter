@@ -65,7 +65,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 unselectedLabelColor: Colors.grey,
                 isScrollable: true,
                 indicatorSize: TabBarIndicatorSize.label,
-                indicator: CircleTabIndicator(color: AppColors.mainColor, radius: 4),
+                indicator: const CircleTabIndicator(color: AppColors.mainColor, radius: 4),
                 tabs: [
                   AppText(text: "Places"),
                   AppText(text: "Inspiration"),
@@ -96,8 +96,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     );
                   },
                 ),
-                Text("Inspirations"),
-                Text("Emotions"),
+                const Text("Inspirations"),
+                const Text("Emotions"),
               ],
             ),
           ),
@@ -146,8 +146,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             )
                         ),
                       ),
-                      SizedBox(height: 5),
+                      // const SizedBox(height: 5),
                       Container(
+                        margin: const EdgeInsets.only(top: 5),
                         child: AppText(text: images.values.elementAt(index), color: AppColors.textColor2),
                       )
                     ],
@@ -164,8 +165,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
 class CircleTabIndicator extends Decoration {
   final Color color;
-  double radius;
-  CircleTabIndicator({required this.color, required this.radius});
+  final double radius;
+  const CircleTabIndicator({required this.color, required this.radius});
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
     // TODO: implement createBoxPainter
@@ -180,11 +181,11 @@ class _CirclePainter extends BoxPainter {
   _CirclePainter({required this.color, required this.radius});
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    Paint _paint = Paint();
-    _paint.color = color;
-    _paint.isAntiAlias = true;
+    Paint paint = Paint();
+    paint.color = color;
+    paint.isAntiAlias = true;
     final Offset circleOffset = Offset(configuration.size!.width/2 - radius/2, configuration.size!.height - radius/2);
-    canvas.drawCircle(offset+circleOffset, radius, _paint);
+    canvas.drawCircle(offset+circleOffset, radius, paint);
   }
 
 }

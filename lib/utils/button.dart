@@ -32,7 +32,7 @@ class Button extends StatelessWidget {
           color: backgroundColor,
       ),
       child: Center(
-        child: AppText(text: text!, color: color,),
+        child: isIcon == false ? AppText(text: text!, color: color,) : Icon(icon),
       )
     );
   }

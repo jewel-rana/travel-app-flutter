@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app/utils/app_colors.dart';
 import 'package:travel_app/utils/button.dart';
 import 'package:travel_app/widgets/app_large_text.dart';
 import 'package:travel_app/widgets/app_text.dart';
+import 'package:travel_app/widgets/responsive_button.dart';
 
 class Detail extends StatefulWidget {
   const Detail({Key? key}) : super(key: key);
@@ -24,6 +26,17 @@ class _DetailState extends State<Detail> {
       child: Stack(
         children: [
           Positioned(
+              left: 0,
+              right: 0,
+              child: Container(
+                width: double.maxFinite,
+                height: 350,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("img/welcome-one.jpg"),
+                        fit: BoxFit.cover)),
+              )),
+          Positioned(
               left: 20,
               top: 50,
               child: Container(
@@ -39,17 +52,6 @@ class _DetailState extends State<Detail> {
                     ),
                   ],
                 ),
-              )),
-          Positioned(
-              left: 0,
-              right: 0,
-              child: Container(
-                width: double.maxFinite,
-                height: 350,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("img/welcome-one.jpg"),
-                        fit: BoxFit.cover)),
               )),
           Positioned(
               top: 320,
@@ -123,8 +125,14 @@ class _DetailState extends State<Detail> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         AppLargeText(
-                            text: "People", color: Colors.black.withOpacity(0.8), size: 19,),
+                          text: "People",
+                          color: Colors.black.withOpacity(0.8),
+                          size: 19,
+                        ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 5,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -135,52 +143,83 @@ class _DetailState extends State<Detail> {
                         )
                       ],
                     ),
-                    const SizedBox(height: 5,),
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(5, (index) {
-                            return InkWell(
-                              onTap: () {
-                                setState(() {
-                                  selectedIndex = index;
-                                });
-                                print(index + 1);
-                              },
-                              child: Button(
-                                size: 50,
-                                backgroundColor:selectedIndex==index? Colors.black : AppColors.buttonBackground,
-                                borderColor: AppColors.buttonBackground,
-                                color: selectedIndex == index?Colors.white: AppColors.mainTextColor,
-                                text: (index+1).toString(),
-                              ),
-                            );
-                          }),
-                      ),
-                        const SizedBox(height: 15,)
-                      ]
+                    const SizedBox(
+                      height: 5,
                     ),
-                    const SizedBox(height: 30,),
+                    Row(children: [
+                      Wrap(
+                        children: List.generate(5, (index) {
+                          return InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                              if (kDebugMode) {
+                                print(index + 1);
+                              }
+                            },
+                            child: Button(
+                              size: 50,
+                              backgroundColor: selectedIndex == index
+                                  ? Colors.black
+                                  : AppColors.buttonBackground,
+                              borderColor: AppColors.buttonBackground,
+                              color: selectedIndex == index
+                                  ? Colors.white
+                                  : AppColors.mainTextColor,
+                              text: (index + 1).toString(),
+                            ),
+                          );
+                        }),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      )
+                    ]),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         AppLargeText(
-                          text: "Description", color: Colors.black.withOpacity(0.8), size: 19,),
+                          text: "Description",
+                          color: Colors.black.withOpacity(0.8),
+                          size: 19,
+                        ),
                       ],
                     ),
-                    const SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        AppText(
-                          text: "This is really a nice description. thanks for your opinion",
-                          color: AppColors.mainTextColor,
-                        )
-                      ],
+                    const SizedBox(
+                      height: 10,
                     ),
+                    AppText(
+                      text:
+                          "This is really a nice description. thanks for your opinion. "
+                              "I am going to be long text. please allow me",
+                      color: AppColors.mainTextColor,
+                    )
                   ],
                 ),
-              ))
+              )),
+          Positioned(
+            bottom: 20,
+              left: 20,
+              right: 20,
+              child: Row(
+                children: [
+                  Button(
+                      size: 50,
+                      color: AppColors.textColor1,
+                      backgroundColor: Colors.white,
+                      borderColor: AppColors.textColor1,
+                    isIcon: true,
+                    icon: Icons.favorite_border,
+                  ),
+                  const SizedBox(width: 20,),
+                  ResponsiveButton(text: "Book now", isResponsive: true,)
+                ],
+              )
+          )
         ],
       ),
     ));
