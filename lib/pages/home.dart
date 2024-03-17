@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/cubit/app_cubit.dart';
+import 'package:travel_app/cubit/app_cubit_states.dart';
 import 'package:travel_app/utils/app_colors.dart';
 import 'package:travel_app/widgets/app_large_text.dart';
 import 'package:travel_app/widgets/app_text.dart';
@@ -21,143 +24,152 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.only(top: 50, left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: BlocBuilder<AppCubits, CubitStates>(
+        builder: (context, state) {
+          if(state is LoadedState) {
+            var info = state.places;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  Icons.menu,
-                  size: 30,
-                  color: Colors.black54,
+                Container(
+                  padding: const EdgeInsets.only(top: 50, left: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Icon(
+                        Icons.menu,
+                        size: 30,
+                        color: Colors.black54,
+                      ),
+                      Container(
+                        width: 50,
+                        height: 50,
+                        margin: const EdgeInsets.only(right: 20),
+                        decoration: BoxDecoration(
+                            image: const DecorationImage(
+                                image: AssetImage("img/user.webp"),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.withOpacity(0.5)),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Column(
+                      children: [AppLargeText(text: "Discover")],
+                    )),
+                const SizedBox(height: 30),
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: TabBar(
+                      labelPadding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                      controller: tabController,
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.grey,
+                      isScrollable: true,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      indicator: const CircleTabIndicator(color: AppColors.mainColor, radius: 4),
+                      tabs: [
+                        AppText(text: "Places"),
+                        AppText(text: "Inspiration"),
+                        AppText(text: "Emotions"),
+                      ],
+                    )),
+                Container(
+                  height: 300,
+                  width: double.maxFinite,
+                  padding: const EdgeInsets.only(top: 20, left: 20),
+                  child: TabBarView(
+                    controller: tabController,
+                    children: [
+                      ListView.builder(
+                        itemCount: info.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            margin: const EdgeInsets.only(right: 20),
+                            width: 200,
+                            height: 300,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                    image: NetworkImage("http://mark.bslmeiyu.com/uploads/${info[index].img}"),
+                                    fit: BoxFit.cover)),
+                          );
+                        },
+                      ),
+                      const Text("Inspirations"),
+                      const Text("Emotions"),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 Container(
-                  width: 50,
-                  height: 50,
-                  margin: const EdgeInsets.only(right: 20),
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(
-                          image: AssetImage("img/user.webp"),
-                          fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.withOpacity(0.5)),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 20),
-          Container(
-              padding: const EdgeInsets.only(left: 20),
-              child: Column(
-                children: [AppLargeText(text: "Discover")],
-              )),
-          const SizedBox(height: 30),
-          Align(
-              alignment: Alignment.bottomLeft,
-              child: TabBar(
-                labelPadding:
-                    const EdgeInsets.only(left: 20, right: 20, bottom: 5),
-                controller: tabController,
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.grey,
-                isScrollable: true,
-                indicatorSize: TabBarIndicatorSize.label,
-                indicator: const CircleTabIndicator(color: AppColors.mainColor, radius: 4),
-                tabs: [
-                  AppText(text: "Places"),
-                  AppText(text: "Inspiration"),
-                  AppText(text: "Emotions"),
-                ],
-              )),
-          Container(
-            height: 300,
-            width: double.maxFinite,
-            padding: const EdgeInsets.only(top: 20, left: 20),
-            child: TabBarView(
-              controller: tabController,
-              children: [
-                ListView.builder(
-                  itemCount: 3,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      margin: const EdgeInsets.only(right: 20),
-                      width: 200,
-                      height: 300,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
-                          image: const DecorationImage(
-                              image: AssetImage("img/kukri-mukri-01.jpeg"),
-                              fit: BoxFit.cover)),
-                    );
-                  },
-                ),
-                const Text("Inspirations"),
-                const Text("Emotions"),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppLargeText(
-                  text: "Explore more",
-                  size: 18,
-                ),
-                AppText(
-                  text: "see all",
-                  color: AppColors.textColor1,
-                )
-              ],
-            ),
-          ),
-          const SizedBox(height: 10,),
-          Container(
-            height: 120,
-            width: double.maxFinite,
-            margin: const EdgeInsets.only(left: 20),
-            child: ListView.builder(
-              itemCount: 4,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (_, index) {
-                return Container(
-                  margin: const EdgeInsets.only(right: 20),
-                  child: Column(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        // margin: const EdgeInsets.only(right: 50),
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                            image:  DecorationImage(
-                                image: AssetImage(images.keys.elementAt(index)),
-                                fit: BoxFit.cover
-                            )
-                        ),
+                      AppLargeText(
+                        text: "Explore more",
+                        size: 18,
                       ),
-                      // const SizedBox(height: 5),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        child: AppText(text: images.values.elementAt(index), color: AppColors.textColor2),
+                      AppText(
+                        text: "see all",
+                        color: AppColors.textColor1,
                       )
                     ],
                   ),
-                );
-              },
-            ),
-          )
-        ],
+                ),
+                const SizedBox(height: 10,),
+                Container(
+                  height: 120,
+                  width: double.maxFinite,
+                  margin: const EdgeInsets.only(left: 20),
+                  child: ListView.builder(
+                    itemCount: 4,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, index) {
+                      return Container(
+                        margin: const EdgeInsets.only(right: 20),
+                        child: Column(
+                          children: [
+                            Container(
+                              // margin: const EdgeInsets.only(right: 50),
+                              width: 80,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                  image:  DecorationImage(
+                                      image: AssetImage(images.keys.elementAt(index)),
+                                      fit: BoxFit.cover
+                                  )
+                              ),
+                            ),
+                            // const SizedBox(height: 5),
+                            Container(
+                              margin: const EdgeInsets.only(top: 5),
+                              child: AppText(text: images.values.elementAt(index), color: AppColors.textColor2),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }
