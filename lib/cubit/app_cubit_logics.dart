@@ -5,6 +5,7 @@ import 'package:travel_app/cubit/app_cubit_states.dart';
 import 'package:travel_app/pages/detail.dart';
 import 'package:travel_app/pages/home.dart';
 import 'package:travel_app/pages/welcome.dart';
+import 'package:travel_app/screens/main_screen.dart';
 
 class AppCubitLogics extends StatefulWidget {
   const AppCubitLogics({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
               return const Center(child: CircularProgressIndicator(),);
             }
             if(state is LoadedState) {
-              return const Home();
+              return const MainScreen();
             } else {
               return Container();
             }
