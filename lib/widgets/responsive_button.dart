@@ -6,10 +6,12 @@ class ResponsiveButton extends StatelessWidget {
   double width;
   bool? isResponsive;
   String? text;
+  bool? isIcon;
 
   ResponsiveButton(
       {Key? key,
         this.isResponsive = false,
+        this.isIcon = true,
         this.width = 120,
         this.text = "Hi"
       })
@@ -29,10 +31,10 @@ class ResponsiveButton extends StatelessWidget {
               mainAxisAlignment: isResponsive==true ? MainAxisAlignment.spaceBetween: MainAxisAlignment.center,
               children: [
                 isResponsive==true ? Container(
-                  margin: const EdgeInsets.only(left: 20),
+                  margin: const EdgeInsets.only(left: 20, right: 20),
                     child: AppText(text: text!, color: Colors.white,)
                 ) : Container(),
-                Image.asset("img/angle.png")
+                isIcon==true ? Image.asset("img/angle.png") : Container()
               ],
             )
         )

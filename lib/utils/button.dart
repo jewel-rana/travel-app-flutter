@@ -4,9 +4,10 @@ import 'package:travel_app/widgets/app_text.dart';
 import 'app_colors.dart';
 
 class Button extends StatelessWidget {
-  Color color = AppColors.buttonBackground;
+  Color color;
   final Color backgroundColor;
-  double size;
+  double width;
+  double? height;
   final Color borderColor;
   String? text;
   bool? isIcon;
@@ -15,8 +16,9 @@ class Button extends StatelessWidget {
     this.isIcon = false,
     this.text = "2",
     this.icon = Icons.abc,
-    required this.size,
-    required this.color,
+    required this.width,
+    this.height = 50,
+    this.color = AppColors.buttonBackground,
     required this.backgroundColor,
     required this.borderColor}) : super(key: key);
 
@@ -24,8 +26,8 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
-      width: size,
-      height: size,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         border: Border.all(color: borderColor, width: 1.0),
           borderRadius: BorderRadius.circular(15),

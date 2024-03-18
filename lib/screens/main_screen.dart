@@ -4,6 +4,7 @@ import 'package:travel_app/pages/profile.dart';
 import 'package:travel_app/pages/search.dart';
 import 'package:travel_app/pages/home.dart';
 import 'package:travel_app/utils/app_colors.dart';
+import '../pages/login.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,7 +18,8 @@ class _MainScreenState extends State<MainScreen> {
     const Home(),
     const Chart(),
     const Search(),
-    const Profile()
+    const Profile(),
+    const Login()
   ];
   int defaultPage = 0;
   void onTap(index){
@@ -41,6 +43,7 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: "Bar"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(icon: Icon(Icons.login), label: "Login"),
         ],
       ),
     );

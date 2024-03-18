@@ -171,7 +171,7 @@ class _DetailState extends State<Detail> {
                                       }
                                     },
                                     child: Button(
-                                      size: 50,
+                                      width: 50,
                                       backgroundColor: selectedIndex == index
                                           ? Colors.black
                                           : AppColors.buttonBackground,
@@ -219,7 +219,7 @@ class _DetailState extends State<Detail> {
                     child: Row(
                       children: [
                         Button(
-                          size: 50,
+                          width: 50,
                           color: AppColors.textColor1,
                           backgroundColor: Colors.white,
                           borderColor: AppColors.textColor1,
