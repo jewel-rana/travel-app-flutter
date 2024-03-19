@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_app/pages/home.dart';
+import 'package:travel_app/pages/forgot.dart';
 import 'package:travel_app/pages/register.dart';
 import 'package:travel_app/utils/app_colors.dart';
 import 'package:travel_app/widgets/app_input_field.dart';
@@ -60,7 +60,20 @@ class _LoginState extends State<Login> {
                   Row(
                     children: [
                       Expanded(child: Container()),
-                      AppText(text: "Forgot your password?"),
+                      RichText(
+                          text: TextSpan(
+                              text: "Forgot password?",
+                              style: TextStyle(color: Colors.grey[500], fontSize: 20),
+                              children: [
+                                TextSpan(
+                                  text: " Reset",
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black
+                                  ),
+                                  recognizer: TapGestureRecognizer()..onTap = () => Get.to(() => const Forgot()),
+                                )
+                              ])),
                     ],
                   )
                 ],
