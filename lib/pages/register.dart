@@ -43,16 +43,28 @@ class _RegisterState extends State<Register> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppLargeText(text: "Hello"),
-                  AppText(text: "Sign into your account"),
+                  AppLargeText(text: "Register", size: 22,),
+                  AppText(text: "Create an account."),
                   const SizedBox(
                     height: 30,
                   ),
-                  AppInputField(hint: "Email address", icon: Icons.email, inputType: TextInputType.emailAddress),
+                  AppInputField(hint: "Name", icon: Icons.man, inputType: TextInputType.text),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  AppInputField(hint: "Email", icon: Icons.email, inputType: TextInputType.emailAddress),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  AppInputField(hint: "Mobile", icon: Icons.phone, inputType: TextInputType.phone),
                   const SizedBox(
                     height: 20,
                   ),
                   AppInputField(hint: "Password", icon: Icons.password, isPassword: true,),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  AppInputField(hint: "Password confirm", icon: Icons.password, isPassword: true,),
                   const SizedBox(
                     height: 20,
                   ),
