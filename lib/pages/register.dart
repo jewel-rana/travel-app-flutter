@@ -34,7 +34,7 @@ class _RegisterState extends State<Register> {
                       fit: BoxFit.cover)),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             Container(
               margin: const EdgeInsets.only(left: 20, right: 20),
@@ -43,6 +43,7 @@ class _RegisterState extends State<Register> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppLargeText(text: "Register", size: 22,),
+                  const SizedBox(height: 5,),
                   AppText(text: "Create an account."),
                   const SizedBox(
                     height: 30,
@@ -67,20 +68,25 @@ class _RegisterState extends State<Register> {
                   const SizedBox(
                     height: 20,
                   ),
-                  RichText(
-                      text: TextSpan(
-                          text: "Have an account?",
-                          style: TextStyle(color: Colors.grey[500], fontSize: 20),
-                          children: [
-                            TextSpan(
-                              text: " Login",
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black
-                              ),
-                              recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
-                            )
-                          ])),
+                  Row(
+                    children: [
+                      Expanded(child: Container()),
+                      RichText(
+                          text: TextSpan(
+                              text: "Have an account?",
+                              style: TextStyle(color: Colors.grey[500], fontSize: 20),
+                              children: [
+                                TextSpan(
+                                  text: " Login",
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black
+                                  ),
+                                  recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
+                                )
+                              ])),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -93,7 +99,7 @@ class _RegisterState extends State<Register> {
               backgroundColor: AppColors.mainColor,
               borderColor: AppColors.mainColor,
               isIcon: false,
-              text: "Sign in",
+              text: "Register",
             ),
             const SizedBox(
               height: 30,
