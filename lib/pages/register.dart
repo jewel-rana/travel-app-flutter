@@ -68,12 +68,20 @@ class _RegisterState extends State<Register> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      Expanded(child: Container()),
-                      AppText(text: "Forgot your password?"),
-                    ],
-                  )
+                  RichText(
+                      text: TextSpan(
+                          text: "Have an account?",
+                          style: TextStyle(color: Colors.grey[500], fontSize: 20),
+                          children: [
+                            TextSpan(
+                              text: " Login",
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black
+                              ),
+                              recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
+                            )
+                          ])),
                 ],
               ),
             ),
@@ -90,23 +98,6 @@ class _RegisterState extends State<Register> {
             ),
             const SizedBox(
               height: 30,
-            ),
-            RichText(
-                text: TextSpan(
-                    text: "Don\'t have an account?",
-                    style: TextStyle(color: Colors.grey[500], fontSize: 20),
-                    children: [
-                      TextSpan(
-                        text: " Create",
-                        style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.black
-                        ),
-                        recognizer: TapGestureRecognizer()..onTap = () => Get.to(() => Home()),
-                      )
-                    ])),
-            const SizedBox(
-              height: 20,
             ),
           ],
         ),
