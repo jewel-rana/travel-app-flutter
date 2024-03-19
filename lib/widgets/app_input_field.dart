@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/utils/app_colors.dart';
 
-class AppInputField extends StatelessWidget {
+class AppInputField extends StatefulWidget {
+
   String? hint;
   IconData? icon;
   final Color color;
   Color? iconColor;
   TextInputType? inputType;
-  bool? isPassword;
+  bool isPassword;
   bool passwordVisible;
+
   AppInputField({Key? key,
     this.hint = "Write here...",
     this.icon = Icons.circle,
@@ -19,14 +21,16 @@ class AppInputField extends StatelessWidget {
     this.passwordVisible = false,
   }) : super(key: key);
 
+  @override
+  State<StatefulWidget> createState() => _AppInputField();
 
-  void setState(Function() passwordVisible) {}
-
+}
+class _AppInputField extends State<AppInputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: color,
+          color: widget.color,
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
@@ -36,33 +40,37 @@ class AppInputField extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.2))
           ]),
       child: TextField(
-        obscureText: isPassword == true,
+        obscureText: widget.isPassword == true,
         decoration: InputDecoration(
-            hintText: hint,
+            hintText: widget.hint,
             prefixIcon: IconButton(
-              icon: Icon(isPassword == true
-                  ? (passwordVisible == true ? Icons.visibility : Icons.visibility_off)
-                  : icon),
-              onPressed: () => !passwordVisible
+              icon: Icon(widget.isPassword == true
+                  ? (widget.passwordVisible == true ? Icons.visibility : Icons.visibility_off)
+                  : widget.icon),
+              onPressed: () => setState(() {
+                widget.passwordVisible = !widget.passwordVisible;
+                widget.isPassword = !widget.isPassword;
+              })
             ),
             contentPadding: const EdgeInsets.only(left: 10, right: 10),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: BorderSide(
-                  color: color,
+                  color: widget.color,
                   width: 1.0,
                 )),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: BorderSide(
-                  color: color,
+                  color: widget.color,
                   width: 1.0,
                 )),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30))),
-        keyboardType: inputType,
+        keyboardType: widget.inputType,
         textInputAction: TextInputAction.done,
       ),
     );
   }
+
 }

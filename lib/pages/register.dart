@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app/pages/home.dart';
-import 'package:travel_app/pages/register.dart';
 import 'package:travel_app/utils/app_colors.dart';
 import 'package:travel_app/widgets/app_input_field.dart';
 import 'package:travel_app/widgets/app_large_text.dart';
@@ -9,14 +8,14 @@ import 'package:travel_app/widgets/app_text.dart';
 import '../utils/button.dart';
 import 'package:get/get.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
-  _LoginState createState() => _LoginState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -88,10 +87,10 @@ class _LoginState extends State<Login> {
                       TextSpan(
                         text: " Create",
                         style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black
+                            fontSize: 20,
+                            color: Colors.black
                         ),
-                          recognizer: TapGestureRecognizer()..onTap = () => Get.to(() => const Register()),
+                        recognizer: TapGestureRecognizer()..onTap = () => Get.to(() => Home()),
                       )
                     ])),
             const SizedBox(
