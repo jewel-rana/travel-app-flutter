@@ -28,6 +28,16 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Welcome", textAlign: TextAlign.center,),
+        backgroundColor: AppColors.mainBgColor,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back), onPressed: () {  },
+        ),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.account_circle))
+        ],
+      ),
       body: pages[defaultPage],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: defaultPage,
@@ -36,10 +46,12 @@ class _MainScreenState extends State<MainScreen> {
         showUnselectedLabels: false,
         unselectedItemColor: AppColors.mainTextColor,
         selectedItemColor: AppColors.mainColor,
-        elevation: 0,
+        elevation: 2,
         onTap: onTap,
+        iconSize: 34,
+        backgroundColor: Colors.white70,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.apps), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.apps,), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: "Bar"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
